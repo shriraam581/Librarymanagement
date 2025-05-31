@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${book.id} ? 'Edit Book' : 'Add Book'"></title>
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 th:text="${book.id} ? 'Edit Book' : 'Add Book'"></h1>
+        <form th:action="${book.id} ? @{/books/edit/{id}(id=${book.id})} : @{/books/new}"
+              th:object="${bookDTO}" method="post">
+            <div>
+                <label>Title:</label>
+                <input type="text" th:field="*{title}" required>
+            </div>
+            <div>
+                <label>Author:</label>
+                <select th:field="*{authorId}" required>
+                    <option th:each="author : ${authors}" 
+                            th:value="${author.id}"
+                            th:text="${author.name}"></option>
+                </select>
+            </div>
+            <div>
+                <label>ISBN:</label>
+                <input type="text" th:field="*{isbn}" required>
+            </div>
+            <div>
+                <label>Publisher:</label>
+                <input type="text" th:field="*{publisher}">
+            </div>
+            <div>
+                <label>Publication Date:</label>
+                <input type="date" th:field="*{publicationDate}">
+            </div>
+            <div>
+                <label>Quantity:</label>
+                <input type="number" th:field="*{quantity}" min="1" required>
+            </div>
+            <button type="submit">Save</button>
+        </form>
+    </div>
+</body>
+</html>

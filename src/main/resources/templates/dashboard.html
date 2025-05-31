@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Dashboard</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>Library Management System</h1>
+        <nav>
+            <a th:href="@{/dashboard}">Dashboard</a>
+            <a th:href="@{/books}">Books</a>
+            <a th:href="@{/authors}">Authors</a>
+            <a th:href="@{/logout}">Logout</a>
+        </nav>
+    </header>
+    
+    <div class="container">
+        <div class="stats">
+            <div class="stat-card">
+                <h3>Total Books</h3>
+                <p th:text="${bookCount}"></p>
+            </div>
+            <div class="stat-card">
+                <h3>Total Authors</h3>
+                <p th:text="${authorCount}"></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

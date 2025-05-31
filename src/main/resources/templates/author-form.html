@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${author.id} ? 'Edit Author' : 'Add Author'"></title>
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 th:text="${author.id} ? 'Edit Author' : 'Add Author'"></h1>
+        <form th:action="${author.id} ? @{/authors/edit/{id}(id=${author.id})} : @{/authors/new}"
+              th:object="${author}" method="post">
+            <div>
+                <label>Name:</label>
+                <input type="text" th:field="*{name}" required>
+            </div>
+            <div>
+                <label>Biography:</label>
+                <textarea th:field="*{biography}"></textarea>
+            </div>
+            <button type="submit">Save</button>
+        </form>
+    </div>
+</body>
+</html>
